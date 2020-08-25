@@ -13,15 +13,12 @@ function LandingPage() {
         fetch(endPoint)
             .then(response => response.json())
             .then(response => {
-                setMovies([response.results]);
+                setMovies(response.results);
                 console.log(response.results[0])
                 setMainMovieImage(response.results[0]);
                 console.log(response)
             })
     }, [])
-    useEffect(() => {
-        console.log('movies', movies);
-    }, [movies, mainMovieImage])
     return (
         <div style={{ width: '100%', margin: '0'}}>
             {/*Main Image*/}
@@ -37,9 +34,9 @@ function LandingPage() {
                 <h2>Movies by latest</h2>
                 <hr />
                 {/*Movie Grid Cards*/}
-                <Row>
+                <Row gutter={[16, 16]}>
                     {
-                        movies && movies.length > 0 && movies.map((movie, index) => (
+                        movies && movies.map((movie, index) => (
                             <React.Fragment key={index}>
                                 <GridCards
                                     image={
@@ -53,7 +50,6 @@ function LandingPage() {
                             </React.Fragment>
                         ))
                     }
-
                 </Row>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center'}}>
