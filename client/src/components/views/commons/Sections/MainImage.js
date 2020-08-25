@@ -2,6 +2,7 @@ import React from 'react';
 
 const MainImage = (props) => {
     const {title, text, image} = props
+    console.log(image);
     return (
         <div style={{ background: `
             linear-gradient(to bottom, rgba(0,0,0,0) 39%,  rgba(0,0,0,0) 41%, rgba(0,0,0,0.65) 100%),
