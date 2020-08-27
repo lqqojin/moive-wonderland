@@ -4,6 +4,7 @@ import {Row} from "antd";
 import MainImage from "../commons/Sections/MainImage";
 import MovieInfo from "../commons/Sections/MovieInfo";
 import GridCards from "../commons/GridCards";
+import Favorite from '../commons/Sections/Favorite';
 
 
 const MovieDetail = (props) => {
@@ -48,6 +49,9 @@ const MovieDetail = (props) => {
             }
             {/*Body*/}
             <div style={{ width: '85%', margin: '1rem auto'}}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Favorite movieInfo={movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
+                </div>
                 {/*Movie Info*/}
                 <MovieInfo
                     movie={movie}
