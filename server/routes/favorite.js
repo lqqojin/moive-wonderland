@@ -25,11 +25,30 @@ router.post('/favorited', (req, res) => {
             if(err) return res.status(400).send(err);
             let result = false;
             if(info.length !== 0 ) result = true;
+            console.log('/favorited > info=', info);
             return res.status(200).json({
                 success: true,
-                favoriteNumber: result
+                favorited: result
             })
         })
+})
+
+router.post('/addToFavorite', (req, res) => {
+    const favorite = new Favorite(req.body);
+    console.log(req.body);
+    favorite.save((error, doc) => {
+        if (error) return res.status(400).send(error);
+        return res.status(200).json({ success: true, result: doc })
+    });
+})
+
+router.post('/removeFromFavorite', (req, res) => {
+    const { movieId, userFrom } = req.body;
+    console.log(req.body);
+    Favorite.findOneAndDelete({ movieId, userFrom},error => {
+        if (error) return res.status(400).send(error);
+        return res.status(200).json({ success: true })
+    });
 })
 
 module.exports = router;
